@@ -1,3 +1,5 @@
+# build dir 
+bin/
 # Compiled Object files
 *.slo
 *.lo
