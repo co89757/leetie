@@ -120,6 +120,20 @@ static inline void ensure(bool expr, const char* fmt, ...) {
     }                                                          \
   } while (0)
 
+template <typename E>
+void Throwf(const char* fmt, ...) {
+  char buf[BUFSIZ];
+  va_list ap;
+  va_start(ap, fmt);
+  vsnprintf(buf, sizeof buf, fmt, ap);
+  va_end(ap);
+  throw E(std::string(buf).c_str());
+}
+
+#define THROW_FMT(EXCEPTION, fmt, ...)                                  \
+  Throwf<EXCEPTION>("[Error] %s:%d:%s:\n" fmt "\n", __FILE__, __LINE__, \
+                    __func__, ##__VA_ARGS__)
+
 //************** COMMON DATA STRUCTURES ************//
 
 struct ListNode {
