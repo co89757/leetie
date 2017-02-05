@@ -135,7 +135,7 @@ void Throwf(const char* fmt, ...) {
                     __func__, ##__VA_ARGS__)
 
 //************** COMMON DATA STRUCTURES ************//
-
+/** List ***/
 struct ListNode {
   int val;
   ListNode* next;
@@ -145,5 +145,13 @@ struct ListNode {
 ListNode* createList(const std::initializer_list<int>& keys);
 void printList(ListNode* head);
 void freeList(ListNode* head);
+
+/** Binary Tree ***/
+struct TreeNode {
+  int val;
+  TreeNode* left;
+  TreeNode* right;
+  TreeNode(int v) : val(v), left(NULL), right(NULL) {}
+};
 
 #endif
