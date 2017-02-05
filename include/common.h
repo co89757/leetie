@@ -134,6 +134,8 @@ void Throwf(const char* fmt, ...) {
   Throwf<EXCEPTION>("[Error] %s:%d:%s:\n" fmt "\n", __FILE__, __LINE__, \
                     __func__, ##__VA_ARGS__)
 
+std::vector<std::string> split(const char* s, const char* delim);
+
 //************** COMMON DATA STRUCTURES ************//
 /** List ***/
 struct ListNode {
@@ -153,5 +155,10 @@ struct TreeNode {
   TreeNode* right;
   TreeNode(int v) : val(v), left(NULL), right(NULL) {}
 };
+void tree_preorderPrint(TreeNode* root);
+void tree_postorderPrint(TreeNode* root);
+
+TreeNode* deserializeTree(const char* s);
+std::string serializeTree(TreeNode* root);
 
 #endif
