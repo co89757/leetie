@@ -111,7 +111,7 @@ TreeNode* deserializeTree(const char* s) {
 
 string serializeTree(TreeNode* root) {
   if (!root) return "";
-  // use two queues to do level-order traversal of tree 
+  // use two queues to do level-order traversal of tree
   deque<TreeNode*> q;
   deque<TreeNode*> qnext;
   q.push_back(root);
@@ -120,27 +120,34 @@ string serializeTree(TreeNode* root) {
     TreeNode* front = q.front();
     if (!front) {
       v.push_back("#");
-      q.pop_front();
-      continue;
     } else {
       v.push_back(std::to_string(front->val));
     }
-    qnext.push_back(front->left);
-    qnext.push_back(front->right);
+    if (front) {
+      qnext.push_back(front->left);
+      qnext.push_back(front->right);
+    }
+
     q.pop_front();
 
     if (q.empty()) {
-      // terminate the loop if no more next level to print 
+      // terminate the loop if no more next level to print
       bool isEnd =
           std::none_of(begin(qnext), end(qnext), [](TreeNode* x) { return x; });
       if (isEnd) break;
-      //advance to next level 
+      // advance to next level
       q.swap(qnext);
     }
   }
 
-  // join the vector with ,
-  std::stringstream ss;
-  std::copy(v.begin(), v.end(), std::ostream_iterator<string>(ss, ","));
-  return ss.str();
+  string res;
+  for (auto it = begin(v); it != end(v); it++) {
+    if (it == begin(v)) {
+      res += *it;
+    } else {
+      res = res + "," + *it;
+    }
+  }
+
+  return res;
 }
