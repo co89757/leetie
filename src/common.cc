@@ -10,6 +10,9 @@ using std::stack;
 using std::deque;
 using std::string;
 using std::vector;
+using std::queue;
+using std::begin;
+using std::end;
 
 ListNode* createList(const std::initializer_list<int>& keys) {
   ListNode* dummy = new ListNode(0);
@@ -88,66 +91,49 @@ void tree_postorderPrint(TreeNode* root) {
   tree_postorderPrint(root->right);
 }
 
-static TreeNode* rdeserializeTree(const std::vector<string>& v, int i) {
-  int N = v.size();
-  string val = v.at(i);
+static TreeNode* rdeserializeTree(const vector<string>& keys, size_t& offset) {
+  // TODO
+  size_t N = keys.size();
+  if (offset >= N) return NULL;
+  string val = keys.at(offset);
+  offset++;
   if (val == "#") return NULL;
-  int key = std::stoi(val);
-  TreeNode* t = new TreeNode(key);
-  auto i_leftchild = (i << 1) + 1;
-  auto i_rightchild = (i << 1) + 2;
-  if (i_leftchild < N) t->left = rdeserializeTree(v, i_leftchild);
-  if (i_rightchild < N) t->right = rdeserializeTree(v, i_rightchild);
+  int data = std::stoi(val);
+  TreeNode* t = new TreeNode(data);
+  t->left = rdeserializeTree(keys, offset);
+  t->right = rdeserializeTree(keys, offset);
   return t;
 }
 
 TreeNode* deserializeTree(const char* s) {
   if (s == NULL || s[0] == '\0') return NULL;
-  std::vector<string> tokens = split(s, ", \t");
-  if (tokens.empty()) return NULL;
-  TreeNode* t = rdeserializeTree(tokens, 0);
+  auto v = split(s, ", \t");
+  size_t offset = 0;
+  TreeNode* t = rdeserializeTree(v, offset);
   return t;
 }
 
+void rserializeTree(TreeNode* r, vector<string>& keys) {
+  if (!r) {
+    keys.push_back("#");
+    return;
+  }
+
+  string data = std::to_string(r->val);
+  keys.push_back(data);
+  rserializeTree(r->left, keys);
+  rserializeTree(r->right, keys);
+}
+
 string serializeTree(TreeNode* root) {
-  if (!root) return "";
-  // use two queues to do level-order traversal of tree
-  deque<TreeNode*> q;
-  deque<TreeNode*> qnext;
-  q.push_back(root);
-  vector<string> v;
-  while (!q.empty()) {
-    TreeNode* front = q.front();
-    if (!front) {
-      v.push_back("#");
-    } else {
-      v.push_back(std::to_string(front->val));
-    }
-    if (front) {
-      qnext.push_back(front->left);
-      qnext.push_back(front->right);
-    }
-
-    q.pop_front();
-
-    if (q.empty()) {
-      // terminate the loop if no more next level to print
-      bool isEnd =
-          std::none_of(begin(qnext), end(qnext), [](TreeNode* x) { return x; });
-      if (isEnd) break;
-      // advance to next level
-      q.swap(qnext);
-    }
-  }
-
+  vector<string> keys;
+  rserializeTree(root, keys);
   string res;
-  for (auto it = begin(v); it != end(v); it++) {
-    if (it == begin(v)) {
-      res += *it;
-    } else {
+  for (auto it = keys.begin(); it != keys.end(); it++) {
+    if (it != keys.begin())
       res = res + "," + *it;
-    }
+    else
+      res += *it;
   }
-
   return res;
 }

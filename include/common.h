@@ -2,9 +2,9 @@
 #define COMMON_H__
 #include <assert.h>
 #include <stdarg.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <cstdint>
 #include <initializer_list>
 #include <iostream>
 #include <string>

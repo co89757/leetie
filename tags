@@ -1,0 +1,43 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	2	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+add_two_numbers	src/add_two_numbers.cc	/^ListNode* add_two_numbers(ListNode* l1, ListNode* l2) {$/;"	f
+ASSERT	include/common.h	111;"	d
+BUFSIZE	include/common.h	12;"	d
+COMMON_H__	include/common.h	2;"	d
+createList	src/common.cc	/^ListNode* createList(const std::initializer_list<int>& keys) {$/;"	f
+deserializeTree	src/common.cc	/^TreeNode* deserializeTree(const char* s) {$/;"	f
+ensure	include/common.h	/^static inline void ensure(bool expr, const char* fmt, ...) {$/;"	f
+freeList	src/common.cc	/^void freeList(ListNode* head) {$/;"	f
+LEETIE_GNU	include/common.h	15;"	d
+left	include/common.h	/^  TreeNode* left;$/;"	m	struct:TreeNode
+ListNode	include/common.h	/^  ListNode(int k) : val(k), next(NULL) {}$/;"	f	struct:ListNode
+ListNode	include/common.h	/^struct ListNode {$/;"	s
+listnode_heap	src/merge_k_sorted_lists.cc	/^    listnode_heap;$/;"	t	file:
+main	src/add_two_numbers.cc	/^int main() {$/;"	f
+main	src/deserialize_tree.cc	/^int main() {$/;"	f
+main	src/merge_k_sorted_lists.cc	/^int main() {$/;"	f
+merge_k_sorted_lists	src/merge_k_sorted_lists.cc	/^ListNode* merge_k_sorted_lists(const vector<ListNode*>& lists) {$/;"	f
+next	include/common.h	/^  ListNode* next;$/;"	m	struct:ListNode
+NodeCompare	src/merge_k_sorted_lists.cc	/^  NodeCompare(bool rev = false) : reverse(rev) {}$/;"	f	struct:NodeCompare
+NodeCompare	src/merge_k_sorted_lists.cc	/^struct NodeCompare {$/;"	s	file:
+operator ()	src/merge_k_sorted_lists.cc	/^  bool operator()(const ListNode* l, const ListNode* r) {$/;"	f	struct:NodeCompare
+printList	src/common.cc	/^void printList(ListNode* head) {$/;"	f
+print_stacktrace	include/common.h	/^static inline void print_stacktrace(FILE* out = stderr,$/;"	f
+rdeserializeTree	src/common.cc	/^static TreeNode* rdeserializeTree(std::istringstream& in) {$/;"	f	file:
+reverse	src/merge_k_sorted_lists.cc	/^  bool reverse;$/;"	m	struct:NodeCompare	file:
+right	include/common.h	/^  TreeNode* right;$/;"	m	struct:TreeNode
+serializeTree	src/common.cc	/^string serializeTree(TreeNode* root) {$/;"	f
+split	src/common.cc	/^std::vector<string> split(const char* s, const char* delim) {$/;"	f
+Throwf	include/common.h	/^void Throwf(const char* fmt, ...) {$/;"	f
+THROW_FMT	include/common.h	133;"	d
+TreeNode	include/common.h	/^  TreeNode(int v) : val(v), left(NULL), right(NULL) {}$/;"	f	struct:TreeNode
+TreeNode	include/common.h	/^struct TreeNode {$/;"	s
+tree_postorderPrint	src/common.cc	/^void tree_postorderPrint(TreeNode* root) {$/;"	f
+tree_preorderPrint	src/common.cc	/^void tree_preorderPrint(TreeNode* root) {$/;"	f
+val	include/common.h	/^  int val;$/;"	m	struct:ListNode
+val	include/common.h	/^  int val;$/;"	m	struct:TreeNode
+__func__	include/common.h	108;"	d

@@ -10,7 +10,7 @@
     "tasks": [{
         "taskName": "build",
         "args": [
-            "${workspaceRoot}/buildone.sh", "${file}", "${workspaceRoot}/bin/${fileBasenameNoExtension}"
+            "${workspaceRoot}/buildone.sh", "${file}", "${workspaceRoot}/bin"
         ],
         "isBuildCommand": true
     }]
