@@ -20,25 +20,25 @@ CYAN='\033[0;36m'
 
 if [[ $# -lt 1 ]]; then
 	echo -e "${RED}Usage: buildone.sh <file> <outdir:=./bin/>${NC}"
-	return -1
+	exit -1
 fi
 
 if [[ ! -f $1 ]]; then
 	echo -e "${RED}source file $1 not exist!${NC}"
-	return -1
+	exit -1
 fi
 
 outdir=${2:-"./bin"}
 
 if [[ ! -d $outdir ]]; then
-	echo -e "${RED}$2 is not a directory!${NC}"
-	return -1
+	echo -e "${RED}$2 is not a directory!Please create your output dir before proceed${NC}"
+	exit -1
 fi
 
 filename=$1
 outname=${filename##*/}
 outname=${outname%.*}
-echo -e "Output file: ${CYAN}[ ${outdir}/${outname} ]${NC}"
+echo "Output binary: [${outdir}/${outname}]"
 g++ -std=c++11 -g -Wall $1 ./src/common.cc -o "${outdir}/${outname}"
 
 if [[ $? -eq 0 ]]; then
