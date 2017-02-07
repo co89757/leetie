@@ -160,7 +160,7 @@ struct ListNode {
 ListNode* createList(const std::initializer_list<int>& keys);
 void printList(ListNode* head);
 void freeList(ListNode* head);
-
+bool areSameList(ListNode* l, ListNode* r);
 /** Binary Tree ***/
 struct TreeNode {
   int val;

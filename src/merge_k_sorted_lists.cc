@@ -57,7 +57,10 @@ int main() {
   ListNode* l4 = NULL;
   vector<ListNode*> v{l1, l2, l3, l4};
   ListNode* r = merge_k_sorted_lists(v);
+  ListNode* expected = createList({0, 1, 2, 3, 7, 8, 9, 10, 11, 13});
+  ASSERT(areSameList(r, expected), "result is not sorted");
   printList(r);
+  freeList(expected);
   freeList(l1);
   freeList(l2);
   freeList(l3);

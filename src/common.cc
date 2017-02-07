@@ -53,6 +53,14 @@ void freeList(ListNode* head) {
   }
 }
 
+bool areSameList(ListNode* l, ListNode* r) {
+  if (!l && !r) return true;    // both null
+  if (!(l && r)) return false;  // only one is non-null
+  bool same_head = (l->val == r->val);
+  bool same_rest = areSameList(l->next, r->next);
+  return same_head && same_rest;
+}
+
 std::vector<string> split(const char* s, const char* delim) {
   std::vector<string> v;
   // to avoid modifying original string
