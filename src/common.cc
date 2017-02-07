@@ -92,7 +92,6 @@ void tree_postorderPrint(TreeNode* root) {
 }
 
 static TreeNode* rdeserializeTree(const vector<string>& keys, size_t& offset) {
-  // TODO
   size_t N = keys.size();
   if (offset >= N) return NULL;
   string val = keys.at(offset);
@@ -136,4 +135,12 @@ string serializeTree(TreeNode* root) {
       res += *it;
   }
   return res;
+}
+
+bool areSameTree(TreeNode* l, TreeNode* r) {
+  if (l == NULL && r == NULL) return true;
+  if ((!l && r) || (!r && l)) return false;
+  // both roots are non-null
+  if (l->val != r->val) return false;
+  return areSameTree(l->left, r->left) && areSameTree(l->right, r->right);
 }

@@ -11,6 +11,20 @@
 #include <vector>
 #define BUFSIZE 1024
 
+/** color coding */
+#define COLOR_RED "\x1b[31m"
+#define COLOR_GREEN "\x1b[32m"
+#define COLOR_YELLOW "\x1b[33m"
+#define COLOR_BLUE "\x1b[34m"
+#define COLOR_MAGENTA "\x1b[35m"
+#define COLOR_CYAN "\x1b[36m"
+#define COLOR_RESET "\x1b[0m"
+
+#define PRINTF_ERR(fmt, ...) printf(COLOR_RED fmt COLOR_RESET, ##__VA_ARGS__)
+#define PRINTF_INFO(fmt, ...) printf(COLOR_GREEN fmt COLOR_RESET, ##__VA_ARGS__)
+#define PRINTF_WARNING(fmt, ...) \
+  printf(COLOR_YELLOW fmt COLOR_RESET, ##__VA_ARGS__)
+
 #if defined(__gnu_linux__) || defined(__GNU__)
 #define LEETIE_GNU
 #include <cxxabi.h>
@@ -108,16 +122,15 @@ static inline void ensure(bool expr, const char* fmt, ...) {
 #define __func__ __PRETTY_FUNCTION__
 #endif
 
-#define ASSERT(cond, fmt, ...)                                 \
-  do {                                                         \
-    if (cond) {                                                \
-      printf("=== [AssertOK]===: (" #cond ")\n");              \
-    } else {                                                   \
-      ensure(cond,                                             \
-             "[AssertFail] %s:%d:%s:\n"                        \
-             "[Msg]:" fmt "\n[Failed Condition]: " #cond "\n", \
-             __FILE__, __LINE__, __func__, ##__VA_ARGS__);     \
-    }                                                          \
+#define ASSERT(cond, fmt, ...)                                                 \
+  do {                                                                         \
+    if (cond) {                                                                \
+      printf(COLOR_GREEN "=== [AssertOK]===: (" #cond ")\n" COLOR_RESET);      \
+    } else {                                                                   \
+      ensure(cond, COLOR_RED "[AssertFail] %s:%d:%s:\n" COLOR_RESET            \
+                             "[Msg]:" fmt "\n[Failed Condition]: " #cond "\n", \
+             __FILE__, __LINE__, __func__, ##__VA_ARGS__);                     \
+    }                                                                          \
   } while (0)
 
 template <typename E>
@@ -158,6 +171,7 @@ struct TreeNode {
 void tree_preorderPrint(TreeNode* root);
 void tree_postorderPrint(TreeNode* root);
 
+bool areSameTree(TreeNode* l, TreeNode* r);
 TreeNode* deserializeTree(const char* s);
 std::string serializeTree(TreeNode* root);
 
